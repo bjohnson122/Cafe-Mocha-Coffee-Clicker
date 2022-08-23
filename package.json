@@ -1,15 +1,14 @@
 {
-  "homepage": "http://bjohnson122.github.io/Cafe-Mocha-Coffee-Clicker",
+  "homepage": "https://bjohnson122.github.io/Cafe-Mocha-Coffee-Clicker",
   "name": "dom_homework",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "http-server . -p 8000 -o -c-1",
-    "predeploy": "npm run build",
-    "deploy": "npm run build && gh-pages -d dist -b main",
-    "build": "react-scripts build",
-    "test": "mocha script_test.js --watch"
+    "test": "mocha script_test.js --watch",
+    "start": "react-scripts start",
+    "deploy": "gh-pages -d build",
+    "build": "react scripts build"
   },
   "author": "",
   "license": "ISC",
