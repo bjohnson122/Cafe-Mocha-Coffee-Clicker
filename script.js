@@ -148,29 +148,17 @@ function tick(data) {
 /*************************
  * EXTRA CREDIT ATTEMPTS BELOW! *also see style.CSS
  *************************/
-// function saveGame(data) {
-//   if (typeof Storage !== "undefined") {
-//     localStorage.setItem("score", data.coffee);
-//   }
-// }
 
-// function loadGame (){
-//   const score = localStorage.getItem("score");
-//   updateCoffeeView(score)
-// }   
-   
-saveFile = function(data){
-  
-  localStorage.setItem('score',JSON.stringify(data.coffee));
+saveGame = function (data) {
+  if (typeof Storage !== "undefined") {
+    localStorage.setItem("score", JSON.stringify(data.coffee));
+  }
 };
 
-loadFile = function(data){
-  var file = JSON.parse(localStorage.getItem('score'));
-  data.coffee = data.score;
- // Game.scene.visits = file.visits;
+loadGame = function () {
+  const game = localStorage.getItem("score");
+  JSON.parse(game);
 };
-
-  
 
 /*************************
  *  Start your engines!
