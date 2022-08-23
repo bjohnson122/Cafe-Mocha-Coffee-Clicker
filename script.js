@@ -1,15 +1,18 @@
-/* eslint-disable no-alert */
+// Hello, the code passes all test specs but I have a quick question regarding return statements (noted on lines 110-111 & 148 - 149)
 
 /**************
  *   SLICE 1
  **************/
-
 function updateCoffeeView(coffeeQty) {
-  // your code here
+  let coffeeCount = document.getElementById("coffee_counter");
+  return (coffeeCount.innerText = coffeeQty);
 }
 
 function clickCoffee(data) {
-  // your code here
+  data.coffee++;
+  const coffeeCount = document.getElementById("coffee_counter");
+  coffeeCount.innerText = data.coffee;
+  renderProducers(data);
 }
 
 /**************
@@ -17,21 +20,32 @@ function clickCoffee(data) {
  **************/
 
 function unlockProducers(producers, coffeeCount) {
-  // your code here
+  producers.forEach((producer) => {
+    if (coffeeCount >= producer.price / 2) {
+      return (producer.unlocked = true);
+    }
+  });
 }
 
 function getUnlockedProducers(data) {
-  // your code here
+  let arrayOfProducers = data.producers;
+
+  return arrayOfProducers.filter((producer) => {
+    return producer.unlocked === true;
+  });
 }
 
 function makeDisplayNameFromId(id) {
-  // your code here
+  return id
+    .split("_")
+    .map((word) => word[0].toUpperCase() + word.slice(1))
+    .join(" ");
 }
 
 // You shouldn't need to edit this function-- its tests should pass once you've written makeDisplayNameFromId
 function makeProducerDiv(producer) {
-  const containerDiv = document.createElement('div');
-  containerDiv.className = 'producer';
+  const containerDiv = document.createElement("div");
+  containerDiv.className = "producer";
   const displayName = makeDisplayNameFromId(producer.id);
   const currentCost = producer.price;
   const html = `
@@ -50,11 +64,24 @@ function makeProducerDiv(producer) {
 }
 
 function deleteAllChildNodes(parent) {
-  // your code here
+  while (parent.firstChild) {
+    parent.removeChild(parent.firstChild);
+  }
+  return parent;
 }
 
 function renderProducers(data) {
-  // your code here
+  const producerContainer = document.querySelector("#producer_container");
+
+  unlockProducers(data.producers, data.coffee);
+
+  deleteAllChildNodes(producerContainer);
+
+  let arrayOfUnlockedProducers = getUnlockedProducers(data);
+
+  return arrayOfUnlockedProducers.forEach((producer) => {
+    producerContainer.appendChild(makeProducerDiv(producer));
+  });
 }
 
 /**************
@@ -62,32 +89,88 @@ function renderProducers(data) {
  **************/
 
 function getProducerById(data, producerId) {
-  // your code here
+  let arrayOfProducers = data.producers;
+  return arrayOfProducers.find((producer) => producer.id === producerId);
 }
 
 function canAffordProducer(data, producerId) {
-  // your code here
+  return data.coffee >= getProducerById(data, producerId).price ? true : false;
 }
 
 function updateCPSView(cps) {
-  // your code here
+  const coffeePerSecond = document.getElementById("cps");
+  coffeePerSecond.innerText = cps;
+  return coffeePerSecond;
+  /* 
+  this function and the updateCoffeeView function works with and without a return statement. Why is that?
+  From my research the return statement is 'optional' depending on how the code is written/logic. 
+  In your opinion, is one better practice than the other (or is it based on what we think is best for our specific function)?
+  */
 }
 
 function updatePrice(oldPrice) {
-  // your code here
+  return Math.floor(oldPrice * 1.25);
 }
 
 function attemptToBuyProducer(data, producerId) {
-  // your code here
+  const producer = getProducerById(data, producerId);
+  if (canAffordProducer(data, producerId)) {
+    producer.qty++;
+    data.coffee -= producer.price;
+
+    producer.price = updatePrice(producer.price);
+    data.totalCPS += producer.cps;
+    return true;
+  }
+  return false;
 }
 
 function buyButtonClick(event, data) {
-  // your code here
+  const target = event.target;
+  if (target.tagName === "BUTTON") {
+    const producer = event.target.id.slice(4);
+    if (attemptToBuyProducer(data, producer) === false) {
+      window.alert("Not enough coffee!");
+    }
+    renderProducers(data);
+    updateCoffeeView(data.coffee);
+    updateCPSView(data.totalCPS);
+  }
 }
 
 function tick(data) {
-  // your code here
+  data.coffee += data.totalCPS;
+  updateCoffeeView(data.coffee);
+  return renderProducers(data); //is the return statement necessary here too?
+  //It passed the test specs without it
 }
+
+/*************************
+ * EXTRA CREDIT ATTEMPTS BELOW! *also see style.CSS
+ *************************/
+// function saveGame(data) {
+//   if (typeof Storage !== "undefined") {
+//     localStorage.setItem("score", data.coffee);
+//   }
+// }
+
+// function loadGame (){
+//   const score = localStorage.getItem("score");
+//   updateCoffeeView(score)
+// }   
+   
+saveFile = function(data){
+  
+  localStorage.setItem('score',JSON.stringify(data.coffee));
+};
+
+loadFile = function(data){
+  var file = JSON.parse(localStorage.getItem('score'));
+  data.coffee = data.score;
+ // Game.scene.visits = file.visits;
+};
+
+  
 
 /*************************
  *  Start your engines!
@@ -103,19 +186,19 @@ function tick(data) {
 
 // How does this check work? Node gives us access to a global variable /// called `process`, but this variable is undefined in the browser. So,
 // we can see if we're in node by checking to see if `process` exists.
-if (typeof process === 'undefined') {
+if (typeof process === "undefined") {
   // Get starting data from the window object
   // (This comes from data.js)
   const data = window.data;
 
   // Add an event listener to the giant coffee emoji
-  const bigCoffee = document.getElementById('big_coffee');
-  bigCoffee.addEventListener('click', () => clickCoffee(data));
+  const bigCoffee = document.getElementById("big_coffee");
+  bigCoffee.addEventListener("click", () => clickCoffee(data));
 
   // Add an event listener to the container that holds all of the producers
   // Pass in the browser event and our data object to the event listener
-  const producerContainer = document.getElementById('producer_container');
-  producerContainer.addEventListener('click', event => {
+  const producerContainer = document.getElementById("producer_container");
+  producerContainer.addEventListener("click", (event) => {
     buyButtonClick(event, data);
   });
 
@@ -142,6 +225,6 @@ else if (process) {
     updatePrice,
     attemptToBuyProducer,
     buyButtonClick,
-    tick
+    tick,
   };
 }

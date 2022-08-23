@@ -1,14 +1,30 @@
 * {
   box-sizing: border-box;
+  /* background-color: rgb(157, 126, 82); */
+  font-family: fantasy;
 }
+
 body {
   margin: 0px;
+  text-align: center;
+
 }
+
+h2 {
+  font-size: 3rem;
+  text-align: center;
+  text-decoration: underline solid black;
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 8px;
+  padding: 5px;
+  border: 2px solid rgba(66, 41, 23);
+}
+
 .column-container {
   display: flex;
   width: 100%;
   height: 100vh;
-  min-width: 650px;
+  min-width: 250px;
 }
 .column {
   margin: 10px;
@@ -20,13 +36,13 @@ body {
 }
 
 .container {
-  width: 100%;
+  width: 90%;
   height: calc(100vh - 40px);
 }
 .container.left {
   margin-top: 25px;
   margin-left: 5px;
-  display: flex;
+  /* display: flex; */
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -35,35 +51,56 @@ body {
 .column-header {
   font-size: 25px;
   position: relative;
-  background-color: white;
-  top: 8px;
+  background-color: rgb(227, 210, 189);
+  padding: 7px;
+  border: 2px solid black;
+  border-radius: 5px;
+  top: 2rem;
 }
 #big_coffee {
   user-select: none;
-  font-size: 128px;
+  font-size: 150px;
   cursor: pointer;
+}
+
+p {
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 8px;
+  padding: 1rem;
+  border: 2px solid rgb(66, 41, 23);
+  text-align: center;
 }
 
 .counter-container {
   font-size: 30px;
   margin: 10px;
+  background-color: rgba(255, 255, 255, 0.75);
+  border-radius: 8px;
+  padding: 7px;
+  border: 2px solid rgb(66, 41, 23);
 }
 
 .cps-container {
   font-size: 20px;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 8px;
+  padding: 4px;
+  border: 2px solid rgba(66, 41, 23, 0.9);
 }
 
 #producer_container {
-  padding: 10px;
+  padding: 1rem;
   overflow: auto;
-  border: 2px black solid;
+  border: 3px rgb(227, 210, 189) solid;
   border-radius: 5px;
+  background-color: rgba(66, 41, 23, 0.77);
 }
 
 .producer {
   margin-bottom: 5px;
+  background-color: rgb(157, 126, 82);
   padding: 10px;
-  border: 2px solid grey;
+  border: 2px solid rgba(0, 0, 0, 0.826);
   border-radius: 4px;
   display: flex;
   justify-content: space-between;
@@ -75,10 +112,24 @@ body {
 }
 
 .producer-title {
-  font-size: 20px;
+  font-size: 22px;
+  padding-right: 3px;
+  font-weight: bold;
+  text-decoration: rgb(66, 41, 23) wavy underline;
 }
 
 .producer button {
   font-size: 15px;
   width: 50px;
+  color: rgb(66, 41, 23);
+  border: 2px solid black;
+  transition-duration: 1s;
+  background-color: rgb(227, 210, 189);
+  transition: ease;
+  border-radius: 12px;
+}
+
+.producer button:hover {
+  background-color: rgb(66, 41, 23);
+  color: white;
 }

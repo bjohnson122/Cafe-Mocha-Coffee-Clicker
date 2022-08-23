@@ -2,15 +2,33 @@
 <html lang="en">
 
 <head>
+  <style>
+    body  {
+  background-image: url("cafe.jpg");
+  background-repeat: no-repeat;
+  display: flex;
+  min-height: auto;
+  width: auto;
+  background-position: center center fixed;
+  background-attachment: fixed;
+  background-size: cover;
+  
+}
+ </style>
   <meta charset="UTF-8">
   <link rel="stylesheet" type="text/css" href="style.css">
-  <title>Coffee Clicker</title>
+  <title>Café Mocha Coffee Clicker</title>
 </head>
 
 <body>
   <div class="column-container">
     <div class="column">
       <div class="container left">
+        <h2>Welcome to Café Mocha!</h2>
+        <p><strong>Café Mocha is a very busy coffee shop in the heart of NYC. As our new employee, it's your job to make coffee for the city that never sleeps. <br> <br>
+        <br>
+          Click the coffee icon below to make a cup of coffee. After you've prepared enough cups, you can unlock producers to increase your productivity. From the staff at Café Mocha, we can't 'expresso' happy we are to have you join the team! </strong></p>
+
         <div class="counter-container">Coffee: <span id="coffee_counter">0</span></div>
         <div class="cps-container"><span id="cps">0</span> coffee/second</div>
         <div id="big_coffee">☕️</div>
