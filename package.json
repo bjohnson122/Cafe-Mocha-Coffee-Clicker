@@ -5,10 +5,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "react-scripts start",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "test": "mocha script_test.js --watch",
-    "start": "http-server . -p 8000 -o -c-1"
+    "build": "react-scripts build",
+    "test": "mocha script_test.js --watch"
   },
   "author": "",
   "license": "ISC",
