@@ -6,9 +6,10 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha script_test.js --watch",
-    "start": "react-scripts start",
+    "start": "http-server . -p 8000 -o -c-1",
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "build": "react scripts build"
+    "build": "react-scripts build"
   },
   "author": "",
   "license": "ISC",
