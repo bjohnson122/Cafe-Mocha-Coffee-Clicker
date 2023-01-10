@@ -88,6 +88,7 @@ function updateCPSView(cps) {
   const coffeePerSecond = document.getElementById("cps");
   coffeePerSecond.innerText = cps;
   return coffeePerSecond;
+}
 
 function updatePrice(oldPrice) {
   return Math.floor(oldPrice * 1.25);
@@ -123,6 +124,7 @@ function tick(data) {
   data.coffee += data.totalCPS;
   updateCoffeeView(data.coffee);
   return renderProducers(data); 
+}
 
 saveGame = function (data) {
   if (typeof Storage !== "undefined") {
