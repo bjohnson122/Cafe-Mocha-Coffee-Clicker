@@ -1,4 +1,3 @@
-
 function updateCoffeeView(coffeeQty) {
   let coffeeCount = document.getElementById("coffee_counter");
   return (coffeeCount.innerText = coffeeQty);
